@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Job;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +23,20 @@ Route::get('/about', function () {
 });
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::get('/jobs', function () {
+    return view('jobs', [
+        'jobs' => Job::all(),
+        'title' => 'Advertised Jobs'
+    ]);
+});
+
+Route::get('/jobs/{id}', function ($id) {
+
+    $job = Job::find($id);
+    return view('job', [
+        'job' => $job,
+        'title' => 'Job Details'
+    ]);
 });
