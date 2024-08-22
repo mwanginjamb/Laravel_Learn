@@ -26,6 +26,9 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
+
+    $jobs = Job::all();
+    dd($jobs);
     return view('jobs', [
         'jobs' => Job::all(),
         'title' => 'Advertised Jobs'
