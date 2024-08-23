@@ -27,12 +27,17 @@ Route::get('/contact', function () {
 
 Route::get('/jobs', function () {
 
-    $jobs = Job::all();
-    dd($jobs);
+    // Eager load to avoid N+1 query issue within loop
+    $jobs = Job::with('employer')->paginate(5);
+
     return view('jobs', [
-        'jobs' => Job::all(),
+        'jobs' => $jobs,
         'title' => 'Advertised Jobs'
     ]);
+});
+
+Route::get('/jobs/create', function () {
+    return  view('create-job');
 });
 
 Route::get('/jobs/{id}', function ($id) {

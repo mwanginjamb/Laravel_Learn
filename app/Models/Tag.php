@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employer extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
-
     public function Jobs()
     {
-        return $this->hasMany(Job::class);
+        return $this->belongsToMany(Job::class, relatedPivotKey: "vacancy_listing_id");
     }
 }

@@ -12,4 +12,14 @@ class Job extends Model
 
     protected $table = 'vacancy_listings';
     protected $fillable = ['title', 'salary'];
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
+
+    public function Tags()
+    {
+        return $this->belongsToMany(Tag::class, foreignPivotKey: "vacancy_listing_id");
+    }
 }

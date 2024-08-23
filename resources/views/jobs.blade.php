@@ -3,15 +3,19 @@
      Jobs Page
     </x-slot>
 
-    <h1 class="font-bold">Jobs Listings</h1>
+    <h1 class="font-bold mb-2">Jobs Listings</h1>
 
-    <ol class="list-decimal">
+    <div class="space-y-4">
         @foreach($jobs as $job)
-            <li>
-                <a href="/jobs/{{$job['id']}}">
-                    {{$job['title']}} Pays {{$job['salary']}} per year.
+          
+                <a href="/jobs/{{$job['id']}}" class="hover:underline block px-4 py-6 border border-gray-400 ">
+                    <div class="font-medium text-blue-400">{{ $job->employer->name }}</div>
+                    <div class="font-bold">{{$job['title']}} </div> {{ number_format($job['salary']) }} per year.
                 </a>
-            </li>
+          
         @endforeach
-    </ol>
+        <div>
+            {{ $jobs->links() }}
+        </div>
+    </div>
 </x-layout>
