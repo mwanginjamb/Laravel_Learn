@@ -27,26 +27,9 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', [JobController::class, 'index']);
-
-// Show create form
-
 Route::get('/jobs/create', [JobController::class, 'create']);
-
-
-// Show one
 Route::get('/jobs/{job}', [JobController::class, 'show']);
-
-// store
 Route::post('/jobs', [JobController::class, 'store']);
-
-// Edit -- display edit form
-
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
-
-// Update
-
 Route::patch('/jobs/{job}/', [JobController::class, 'update']);
-
-// Delete
-
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
